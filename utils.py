@@ -11,7 +11,7 @@ import os
 from torch.nn import functional as F
 
 
-def train_model(model, device, train_loader, test_loader, num_epochs, optimizer, start_epoch=0):
+def train_model(model, device, train_loader, test_loader, num_epochs, optimizer, model_name, start_epoch=0):
     criterion = nn.CrossEntropyLoss()
 
     # Create the OneCycleLR scheduler
@@ -79,7 +79,7 @@ def train_model(model, device, train_loader, test_loader, num_epochs, optimizer,
         # Save best model
         if test_accuracy > best_accuracy:
             best_accuracy = test_accuracy
-            torch.save(model.state_dict(), 'best_model_v1.pth')
+            torch.save(model.state_dict(), model_name)
 
     return train_losses, train_accuracies, test_accuracies
 

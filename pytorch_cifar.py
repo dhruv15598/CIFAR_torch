@@ -18,7 +18,8 @@ def main():
     class Args:
         def __init__(self):
             self.mode = 'train'  # 'train', 'visualize', 'test', 'both'
-            self.model_path = 'model_checkpoint_v1.pth'
+            self.model_path = 'model_checkpoint_v2.pth'
+            self.model_name = 'best_model_v2.pth'
             self.learning_rate = 0.001
             self.epochs = 10
             self.batch_size = 64
@@ -57,7 +58,7 @@ def main():
         print("\nStarting training...")
         new_losses, new_train_acc, new_test_acc = train_model(
             model, device, train_loader, test_loader,
-            args.epochs, optimizer, start_epoch)
+            args.epochs, optimizer, args.model_name, start_epoch)
 
         # Update metrics
         train_losses.extend(new_losses)
